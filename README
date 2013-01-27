@@ -1,1 +1,21 @@
-sample backbone application
+Sample backbone.js and codeigniter application
+
+
+---------
+FRONT END
+
+Final folder contains one file index.html which is implemented using backbone.js , it makes REST API calls to the backend which is implemented using codeigniter
+
+---------
+BACK END
+
+backbone folder contains the code for codeigniter.
+
+In application/controller folder, backend.php implements two functions that accepts get and put request.
+The model for this is in application/models folder. urls_model.php , which interacts with the database for storing or fetching data.
+
+---------
+mysql
+
+backbone.sql conains the database backbone
+It has two tables, urls and tags for storing the data.
