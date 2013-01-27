@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sample Backbone App</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+    		<h1>Sample Backbone.js App</h1>
+    		<hr />
+    		<div class="page"></div>
+  	</div>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+  	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
+  	<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+	
+	<script type="text/template" id="main-page-template">
+    		<form class="main-page-form">
+      			<legend>Add New URL</legend>
+        			<label>URL</label>
+        			<input name="urlsource" type="text" value="">
+        			<label>Tags</label>
+        			<input name="tag" type="text" value="">
+				<br />
+       			<button type="submit" class="btn">Create</button>
+				<hr/>
+    		</form>
+		<form class="search-page-form">
+				<label>Tag for Searching</label>
+        			<input name="tagsearch" type="text">
+        			<br />
+			<button type="submit" class="btn">Search</button>
+	
+		</form>
+		
+ 	</script>
+	<script type="text/template" id="search-tag-template">
+		<table class="table striped">
+		  <thead>
+		    <tr>
+		      <th>Url List</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% _.each(urlList, function(urlList) { %>
+		      <tr>
+			<td><%= urlList.get('url') %></td>
+		      </tr>
+		    <% }); %>
+		  </tbody>
+		</table>
+	</script>
+	
+	<script>
+
+		$.fn.serializeObject = function() {
+		var o = {};
+		var a = this.serializeArray();
+		$.each(a, function() {
+		    if (o[this.name] !== undefined) {
+			if (!o[this.name].push) {
+			    o[this.name] = [o[this.name]];
+			}
+			o[this.name].push(this.value || '');
+		    } else {
+			o[this.name] = this.value || '';
+		    }
+		  });
+		  return o;
+		};
+
+		var UrlList = Backbone.Collection.extend({
+		    url: '/backbone/index.php/backend/tag/tag/'
+				    
+		});
+		var UrlTags = Backbone.Model.extend({
+		    urlRoot: '/backbone/index.php/backend/tag'
+		});
+
+		var UrlListView = Backbone.View.extend({
+		    el: '.page',
+		    render: function(options) {
+		      var that=this;
+		      if(options.id) {
+			var urlList = new UrlList({id: options.id});
+			urlList.url = urlList.url + options.id;
+			urlList.fetch({
+			  success: function(urlList) {
+			     var template = _.template($('#search-tag-template').html() , {urlList:urlList.models});
+			     that.$el.html(template);
+			  }
+			})
+		      }
+		    }
+		});
+		var MainPageView = Backbone.View.extend({
+			el: '.page',
+			events: {
+				'submit .search-page-form' : 'searchTag',
+				'submit .main-page-form' : 'saveUrl'
+			},
+			searchTag: function(ev) {
+				var tag_search = $(ev.currentTarget).serializeObject();
+				router.navigate('#/search/'+tag_search.tagsearch,{trigger:true});
+				return false;
+			},
+			saveUrl: function(ev) {
+				var urlTagsData = $(ev.currentTarget).serializeObject();				
+				var urlTags = new UrlTags();
+				urlTags.save(urlTagsData , {success: function(urlTags) {
+				  alert("Data Saved");
+				  router.navigate('',{trigger:true});
+				}
+			    });
+			    return false;
+			},
+			render : function() {
+				var that=this;
+				var template = _.template($('#main-page-template').html());
+				that.$el.html(template);
+			}
+		});
+
+		
+		var mainPageView = new MainPageView();
+		var urlListView = new UrlListView();
+		
+		var Router = Backbone.Router.extend({
+        		routes: {
+          			"": "home", 
+          			"search/:id": "search",
+        		}
+    		});
+
+    		var router = new Router;
+    		router.on('route:home', function() {
+      			mainPageView.render();
+    		})
+    		router.on('route:search', function(id) {
+      			urlListView.render({id: id});
+    		})
+		Backbone.history.start();
+	</script>
+	
+</body>
+</html>

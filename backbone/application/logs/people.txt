@@ -1,0 +1,145 @@
+stdClass Object
+(
+    [value] => text
+    [mama] => ullu
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample
+)
+stdClass Object
+(
+    [urlsource] => http://topcoder.com
+    [tag] => coding
+)
+stdClass Object
+(
+    [urlsource] => http://linux.org
+    [tag] => linux
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample,tada,hoho
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample,tada,hoho
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample,tada,hoho
+)
+stdClass Object
+(
+    [urlsource] => kkkk
+    [tag] => kk,mm,ll
+)
+stdClass Object
+(
+    [urlsource] => rr
+    [tag] => rr,gg,aa
+)
+stdClass Object
+(
+    [urlsource] => sample
+    [tag] => sample
+)
+stdClass Object
+(
+    [urlsource] => munu
+    [tag] => sample,mu,mama
+)
+stdClass Object
+(
+    [urlsource] => http://topcoder.com
+    [tag] => coding,interview
+)
+stdClass Object
+(
+    [urlsource] => http://linux.org
+    [tag] => linux,foss
+)
+stdClass Object
+(
+    [urlsource] => http://w3schools.org
+    [tag] => coding, javascript, php, FOSS
+)
+stdClass Object
+(
+    [urlsource] => muaahhh
+    [tag] => hh, tt,kkk
+)
+stdClass Object
+(
+    [urlsource] => ullu
+    [tag] => ii, yy, pp
+)
+stdClass Object
+(
+    [urlsource] => hhhhhhh
+    [tag] => uu, ii, pp
+)
+stdClass Object
+(
+    [urlsource] => hhhhhhhqq
+    [tag] => uu, ii, pp
+)
+stdClass Object
+(
+    [urlsource] => qqqqqqqqqjjj
+    [tag] => jj, ll, qq
+)
+stdClass Object
+(
+    [urlsource] => nnnnnnnnn
+    [tag] => dd, kk, ll
+)
+stdClass Object
+(
+    [urlsource] => uuu
+    [tag] => uu,ll
+)
+stdClass Object
+(
+    [urlsource] => uuuuu
+    [tag] => uu, ll, jj
+)
+stdClass Object
+(
+    [urlsource] => wwwwwww
+    [tag] => rr,gg,aa
+)
+stdClass Object
+(
+    [urlsource] => bbbb
+    [tag] => ffg, tthg
+)

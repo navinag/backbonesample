@@ -1,0 +1,54 @@
+<?php  
+require APPPATH.'/libraries/REST_Controller.php';
+class backend extends REST_Controller {  
+
+    public function __construct() {
+        parent::__construct();
+	$this->load->model('urls_model');
+    }
+    
+    public function tag_get() {
+	if(!$this->get('tag'))  
+        {  
+            $this->response(NULL, 400);  
+        }
+	//echo $this->get('tag');
+
+        $urls = $this->urls_model->get_urls( $this->get('tag') );  
+        if($urls)  
+        {  
+            $this->response($urls, 200); // 200 being the HTTP response code  
+        }  
+        else  
+        {  
+            $this->response(NULL, 404);  
+        }
+    }
+
+    public function tag_post() {
+	//$input = json_decode($_POST['urlsource']);
+	$data = json_decode(file_get_contents('php://input'));
+	$dump = print_r($data,true);
+	
+	
+	
+$file = '/var/www/html/backbone/application/logs/people.txt';
+// Open the file to get existing content
+$current = file_get_contents($file);
+// Append a new person to the file
+$current .= $dump;
+// Write the contents back to the file
+file_put_contents($file, $current);
+
+	$result = $this->urls_model->update_url($data->urlsource , $data->tag);  
+	
+        if($result === FALSE)  
+        {  
+            $this->response(array('status' => 'failed'));  
+        }  
+        else  
+        {  
+            $this->response(array('status' => 'success'));  
+        } 
+    }
+}  
